@@ -1,0 +1,28 @@
+﻿<form asp-controller="Verbali" asp-action="Bottone" method="get" class="mb-3">
+    <div class="btn-group" role="group" aria-label="Opzioni">
+        <button type="submit" name="opzione" value="groupby" class="btn btn-primary">Verbali Raggruppati per Trasgressore</button>
+        <button type="submit" name="opzione" value="points" class="btn btn-primary">Punti Raggruppati</button>
+        <button type="submit" name="opzione" value="morethan10" class="btn btn-primary">Violazioni sopra i 10 punti</button>
+        <button type="submit" name="opzione" value="morethan400" class="btn btn-primary">Violazioni sopra i 400€</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Data Violazione</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col">Punti Decurtati</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>@v.DataViolazione.ToString("dd/MM/yyyy")</td>
+                <td>@v.Descrizione</td>
+                <td>@v.DecurtamentoPunti</td>
+            </tr>
+        }
+    </tbody>
+</table>

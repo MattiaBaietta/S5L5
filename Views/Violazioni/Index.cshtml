@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form asp-controller="Violazioni" asp-action="Add" method="post" class="mt-5">
+    <h3>Inserisci nuovo verbale:</h3>
+    <div class="form-group">
+        <label>Data Violazione:</label>
+        <input type="date" name="DataViolazione" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Indirizzo Violazione:</label>
+        <input type="text" name="IndirizzoViolazione" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Nominativo Agente:</label>
+        <input type="text" name="Nominativo_Agente" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Data Trascrizione verbale:</label>
+        <input type="date" name="DataTrascrizioneVerbale" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Importo:</label>
+        <input type="number" name="Importo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Punti Decurtati:</label>
+        <input type="text" name="DecurtamentoPunti" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Infrazione:</label>
+        <select name="idviolazione" class="form-control">
+            @{
+                foreach (var v in ViewBag.Violazione)
+                {
+                    <option value="@v.idviolazione">
+                        @v.Descrizione
+                    </option>
+                }
+
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Anagrafica:</label>
+        <select name="idanagrafica" class="form-control">
+            @{
+                foreach (var t in ViewBag.Trasgressori)
+                {
+                    <option value="@t.idanagrafica">
+                        @t.Nome @t.Cognome
+                    </option>
+                }
+
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Aggiungi Verbale</button>
+</form>

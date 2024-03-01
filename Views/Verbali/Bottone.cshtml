@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form asp-controller="Verbali" asp-action="Bottone" method="get" class="mb-3">
+    <div class="btn-group" role="group" aria-label="Opzioni">
+        <button type="submit" name="opzione" value="groupby" class="btn btn-primary">Verbali Raggruppati per Trasgressore</button>
+        <button type="submit" name="opzione" value="points" class="btn btn-primary">Punti Raggruppati</button>
+        <button type="submit" name="opzione" value="morethan10" class="btn btn-primary">Violazioni sopra i 10 punti</button>
+        <button type="submit" name="opzione" value="morethan400" class="btn btn-primary">Violazioni sopra i 400€</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Cognome</th>
+            @foreach (var a in ViewBag.valori)
+            {
+                <th scope="col">@a</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>@v.Nome</td>
+                <td>@v.Cognome</td>
+                <td>@v.Importo</td>
+                @if (ViewBag.valori.Count > 2)
+                {
+                    <td>@v.DataViolazione</td>
+                    <td>@v.DecurtamentoPunti</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
